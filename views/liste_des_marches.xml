@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="list_des_marche_form" model="ir.ui.view">
+        <field name="name">list.des.marche.form</field>
+        <field name="model">list.des.marche</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="objet"/>
+                            <field name="maitreouvrage"/>
+                        </group>
+                        <group>
+                            <field name="respprojet"/>
+                            <field name="abv"/>
+                            <field name="delegation"/>
+                        </group>
+                        <center>
+                                <button name="import_bordereau_de_prix" string="Importer"/>
+                            </center>
+                    </group>
+
+                    <notebook>
+                        <page string="Bordereau des prix" name="bordereaudesprix">
+
+                            <field name="bordereau" nolabel="1">
+                                <tree editable="bottom" decoration-warning="typedeprix=='section'">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="typedeprix"/>
+                                    <field name="name"/>
+                                    <field name="designation"/>
+                                    <field name="quantite"/>
+                                    <field name="unite"/>
+                                    <field name="prixun"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="list_des_marche_kanban" model="ir.ui.view">
+        <field name="name">list.des.marche.kanban</field>
+        <field name="model">list.des.marche</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="abv"/>
+                <field name="respprojet"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <ul>
+                                    <li>
+                                        N° :
+                                        <field name="name"/>
+                                    </li>
+                                    <li>
+                                        Appellation :
+                                        <field name="appelation"/>
+                                    </li>
+                                    <li>
+                                        Responsable :
+                                        <field name="respprojet"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="comptadesmarch_action" model="ir.actions.act_window">
+        <field name="name">Tableau de bord général</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">list.des.marche</field>
+        <field name="view_mode">kanban,form,tree</field>
+    </record>
+
+    <menuitem id="comptabilite_des_marche"
+              name="Comptabilité des marchés"
+              sequence="1"/>
+
+    <menuitem id="marche_root"
+              name="Marchés"
+              parent="comptabilite_des_marche"
+              sequence="1"/>
+
+    <menuitem id="list_des_marche_root"
+              name="Liste des marchés"
+              parent="marche_root"
+              action="comptadesmarch_action"
+              sequence="1"/>
+
+    <menuitem id="attachements_mo_root"
+              name="Attachements maitre d'ouvrage"
+              parent="comptabilite_des_marche"
+              sequence="2"/>
+
+    <menuitem id="list_des_attachements_mo"
+              name="Liste des attachements"
+              parent="attachements_mo_root"
+              action="comptadesmarch_action"
+              sequence="1"/>
+
+    <menuitem id="analyse_des_attachements_mo"
+              name="Analyse"
+              parent="attachements_mo_root"
+              action="comptadesmarch_action"
+              sequence="2"/>
+
+    <menuitem id="attachements_tr_root"
+              name="Attachements travaux réalisés"
+              parent="comptabilite_des_marche"
+              sequence="10"/>
+
+    <menuitem id="list_des_attachements_tr"
+              name="Liste des attachements"
+              parent="attachements_tr_root"
+              action="comptadesmarch_action"
+              sequence="1"/>
+
+    <menuitem id="analyse_des_attachements_tr"
+              name="Analyse"
+              parent="attachements_tr_root"
+              action="comptadesmarch_action"
+              sequence="2"/>
+
+</odoo>

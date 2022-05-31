@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="recap_des_attreel_form" model="ir.ui.view">
+        <field name="name">recap.des.attreel.form</field>
+        <field name="model">recap.des.att</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_cloturer_att" type='object' string="Clôturer l'attachement" class="btn-dark"/>
+                    <button name="action_valider_att" type='object' string="Valider l'attachement" class="btn-success"/>
+                    <field name="etatatt" widget="statusbar" statusbar_visible="cre,clt,vld" readonly="1"/>
+                </header>
+                <sheet>
+                    <group string='Informations générales'>
+                        <field name="recap_id"/>
+                        <field name="mois"/>
+                        <field name="name" force_save="1"/>
+                    </group>
+                </sheet>
+                <group string='Informations générales'>
+                    <field name="detail_id" nolabel="1" context="{'default_marcheid':recap_id}">
+                        <tree editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="prix_id_domain" invisible="1"/>
+                            <field name="listprix" domain="prix_id_domain" width="5%"/>
+                            <field name="designation_prix" width="18%"/>
+                            <field name="unite_prix" width="2%"/>
+                            <field name="quantite_prix" width="8%"/>
+                            <field name="PU_prix" width="8%"/>
+                            <field name="montant_prix" width="8%"/>
+                            <field name="quantiteant_prix" width="8%"/>
+                            <field name="name" width="8%"/>
+                            <field name="quantitecml_prix" width="8%"/>
+                            <field name="montantant_prix" width="8%"/>
+                            <field name="montantm_prix" width="8%"/>
+                            <field name="montantcml_prix" width="8%"/>
+                            <field name="marcheid" invisible="1" width="8%"/>
+                        </tree>
+                    </field>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="recap_des_attreel_tree" model="ir.ui.view">
+        <field name="name">recap.des.attreel.tree</field>
+        <field name="model">recap.des.att</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="mois" width="5%"/>
+                <field name="name" width="5%"/>
+                <field name="montant" width="5%"/>
+                <field name="etatatt" width="85%" widget="badge" decoration-warning="etatatt=='clt'" decoration-success="etatatt=='vld'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="recap_des_attreel_view" model="ir.ui.view">
+        <field name="name">recap_des_attreel.view</field>
+        <field name="model">recap.des.att</field>
+        <field name="arch" type="xml">
+            <search string="DMR">
+                <filter name="group_customer_id" string="Customer" icon="terp-partner" context="{'group_by':'recap_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="attachementreel_action" model="ir.actions.act_window">
+        <field name="name">Attachements réel</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">recap.des.att</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{"default_typeatt":"tr" , "default_etatatt":"cre", 'search_default_group_customer_id': 1}</field>
+    </record>
+
+
+
+    <menuitem id="attachements_tr_root"
+              name="Attachements travaux réalisés"
+              parent="comptabilite_des_marche"
+              sequence="10"/>
+
+    <menuitem id="list_des_attachements_tr"
+              name="Liste des attachements"
+              parent="attachements_tr_root"
+              action="attachementreel_action"
+              sequence="1"/>
+
+    <menuitem id="analyse_des_attachements_tr"
+              name="Analyse"
+              parent="attachements_tr_root"
+              action="attachementreel_action"
+              sequence="2"/>
+
+</odoo>

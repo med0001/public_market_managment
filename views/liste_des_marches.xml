@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <group>
+                    <group string='Informations générales'>
                         <group>
                             <field name="name"/>
                             <field name="objet"/>
@@ -18,9 +18,18 @@
                             <field name="abv"/>
                             <field name="delegation"/>
                         </group>
-                        <center>
-                                <button name="import_bordereau_de_prix" string="Importer"/>
-                            </center>
+                    </group>
+                     <group string='Informations financières'>
+                        <group>
+                            <field name="name"/>
+                            <field name="objet"/>
+                            <field name="maitreouvrage"/>
+                        </group>
+                        <group>
+                            <field name="respprojet"/>
+                            <field name="abv"/>
+                            <field name="delegation"/>
+                        </group>
                     </group>
 
                     <notebook>
@@ -35,6 +44,16 @@
                                     <field name="quantite"/>
                                     <field name="unite"/>
                                     <field name="prixun"/>
+                                    <field name="montant" sum="Montant total"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Attachements réels" name="attreel">
+                            <field name="nbratt" nolabel="1">
+                                <tree create="false" delete="false" editable="false">
+                                    <field name="name"/>
+                                    <field name="mois"/>
+                                    <field name="typeatt"/>
                                 </tree>
                             </field>
                         </page>
@@ -114,23 +133,6 @@
     <menuitem id="analyse_des_attachements_mo"
               name="Analyse"
               parent="attachements_mo_root"
-              action="comptadesmarch_action"
-              sequence="2"/>
-
-    <menuitem id="attachements_tr_root"
-              name="Attachements travaux réalisés"
-              parent="comptabilite_des_marche"
-              sequence="10"/>
-
-    <menuitem id="list_des_attachements_tr"
-              name="Liste des attachements"
-              parent="attachements_tr_root"
-              action="comptadesmarch_action"
-              sequence="1"/>
-
-    <menuitem id="analyse_des_attachements_tr"
-              name="Analyse"
-              parent="attachements_tr_root"
               action="comptadesmarch_action"
               sequence="2"/>
 

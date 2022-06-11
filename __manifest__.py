@@ -10,7 +10,12 @@
  'version': '0.1',
  'depends': ['base','web_domain_field'],
  'data': ['views/liste_des_marches.xml',
-          'views/attachements_reel.xml',],
+          'views/attachements_reel.xml',
+          'views/attachements_mo.xml',
+          'views/assets.xml',
+          'views/list_des_devis_sst.xml',
+          'report/rapport_attachelent_reel.xml',
+          'report/report.xml'],
  'demo': [],
  'application': True,
 }

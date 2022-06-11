@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="report_attachement_reel" model="ir.actions.report">
+        <field name="name">Attachement réel</field>
+        <field name="model">recap.des.att</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">comptabilite_des_marche.rapport_attachelent_reel</field>
+        <field name="report_file">comptabilite_des_marche.rapport_attachelent_reel</field>
+        <field name="binding_model_id" ref="model_recap_des_att"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

@@ -48,7 +48,25 @@
                                 </tree>
                             </field>
                         </page>
-                        <page string="Attachements réels" name="attreel">
+                        <page string="Attachements réels" name="attreel" >
+                            <field name="nbratt" nolabel="1">
+                                <tree create="false" delete="false" editable="false">
+                                        <field name="name"/>
+                                        <field name="mois"/>
+                                        <field name="typeatt"/>
+                                    </tree>
+                            </field>
+                        </page>
+                        <page string="Attachements maitre d'ouvrage" name="attmo">
+                            <field name="nbratt" nolabel="1">
+                                <tree create="false" delete="false" editable="false">
+                                    <field name="name"/>
+                                    <field name="mois"/>
+                                    <field name="typeatt"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Décomptes" name="attmo">
                             <field name="nbratt" nolabel="1">
                                 <tree create="false" delete="false" editable="false">
                                     <field name="name"/>
@@ -119,21 +137,6 @@
               action="comptadesmarch_action"
               sequence="1"/>
 
-    <menuitem id="attachements_mo_root"
-              name="Attachements maitre d'ouvrage"
-              parent="comptabilite_des_marche"
-              sequence="2"/>
 
-    <menuitem id="list_des_attachements_mo"
-              name="Liste des attachements"
-              parent="attachements_mo_root"
-              action="comptadesmarch_action"
-              sequence="1"/>
-
-    <menuitem id="analyse_des_attachements_mo"
-              name="Analyse"
-              parent="attachements_mo_root"
-              action="comptadesmarch_action"
-              sequence="2"/>
 
 </odoo>

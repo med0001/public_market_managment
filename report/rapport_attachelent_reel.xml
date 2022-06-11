@@ -1,0 +1,9 @@
+<odoo>
+    <template id="report_attachement_reels">
+        <t t-call="web.basic_layout">
+            <div class="page">
+
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -21,7 +21,7 @@
                     </group>
                 </sheet>
                 <group string='Informations générales'>
-                    <field name="detail_id" nolabel="1" context="{'default_marcheid':recap_id , 'default_temptype':'tr'}">
+                    <field name="detail_id" nolabel="1" context="{'default_marcheid':recap_id , 'default_temptype':'mo'}">
                         <tree editable="bottom">
                             <field name="sequence" widget="handle"/>
                             <field name="prix_id_domain" invisible="1"/>
@@ -69,32 +69,32 @@
         </field>
     </record>
 
-    <record id="attachementreel_action" model="ir.actions.act_window">
-        <field name="name">Attachements réel</field>
+    <record id="attachementmo_action" model="ir.actions.act_window">
+        <field name="name">Attachements MO</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">recap.des.att</field>
         <field name="view_mode">tree,form,kanban</field>
-        <field name="domain">[('typeatt','=','tr')]</field>
-        <field name="context">{"default_typeatt":"tr" , "default_etatatt":"cre", 'search_default_group_customer_id': 1}</field>
+        <field name="domain">[('typeatt','=','mo')]</field>
+        <field name="context">{"default_typeatt":"mo" , "default_etatatt":"cre", 'search_default_group_customer_id': 1}</field>
     </record>
 
 
 
-    <menuitem id="attachements_tr_root"
-              name="Attachements travaux réalisés"
+    <menuitem id="attachements_mo_root"
+              name="Attachements maitre d'ouvrage"
               parent="comptabilite_des_marche"
-              sequence="10"/>
+              sequence="2"/>
 
-    <menuitem id="list_des_attachements_tr"
+    <menuitem id="list_des_attachements_mo"
               name="Liste des attachements"
-              parent="attachements_tr_root"
-              action="attachementreel_action"
+              parent="attachements_mo_root"
+              action="attachementmo_action"
               sequence="1"/>
 
-    <menuitem id="analyse_des_attachements_tr"
+    <menuitem id="analyse_des_attachements_mo"
               name="Analyse"
-              parent="attachements_tr_root"
-              action="attachementreel_action"
+              parent="attachements_mo_root"
+              action="attachementmo_action"
               sequence="2"/>
 
 </odoo>
